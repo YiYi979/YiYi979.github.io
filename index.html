@@ -18,6 +18,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            flex-wrap: wrap;
             font-family: 'Poppins:', cursive;
         }
 
@@ -38,7 +39,8 @@
             color: pink;
             font-weight: 700;
         }
-        .dkdbdh p{
+
+        .dkdbdh p {
             font-size: 3em;
             color: pink;
             font-weight: 700;
@@ -53,12 +55,17 @@
         .zs {
             position: absolute;
             width: 80%;
+            left: -80%;
             opacity: 0;
+            transition: opacity 1s ease-out 3s,transform 1s ease-out 3s;
         }
 
         .ys {
+            position: absolute;
             width: 80%;
+            right: -80%;
             opacity: 0;
+            transition: opacity 1s ease-out 3s,transform 1s ease-out 3s;
         }
 
         .zs img,
@@ -77,11 +84,21 @@
         .bdh.visible {
             opacity: 0;
         }
-        .dkdbdh{
-            transition: opacity 1s ease-out 0.5 ;
+
+        .dkdbdh {
+            transition: opacity 1s ease-out 1s;
         }
+
         .dkdbdh.visible {
             opacity: 1;
+        }
+        .zs.visible{
+            opacity: 1;
+ transform: translate(80%);
+        }
+        .ys.visible{
+            opacity: 1;
+ transform: translate(-80%);
         }
     </style>
 </head>
@@ -98,24 +115,25 @@
     <div class="zs">
         <img src="图片/左手一个嘴巴子.jpg" alt="">
         <p>左手一个嘴巴子</p>
-        <div class="ys">
-            <img src="图片/右手一个嘴巴子.jpg" alt="">
-            <p>右手一个嘴巴子</p>
-        </div>
-        <script>
-            const bdh = document.querySelector('.bdh');
-            const dkdbdh = document.querySelector('.dkdbdh');
-            let isCardVisible = false;
+    </div>
+    <div class="ys">
+        <img src="图片/右手一个嘴巴子.jpg" alt="">
+        <p>右手一个嘴巴子</p>
+    </div>
+    <script>
+        const bdh = document.querySelector('.bdh');
+        const dkdbdh = document.querySelector('.dkdbdh');
+        let isCardVisible = false;
 
-            document.addEventListener('touchstart', () => {
-                if (!isCardVisible) {
-                    isCardVisible = true; // 设置标记，防止重复触发
-                    bdh.classList.add('visible'); // 当用户点击（或触摸）屏幕时，touchstart 事件触发，JS 脚本会为.bdh添加 .visible 类，从而触发过渡效果，
-                    dkdbdh.classList.add('visible'); // 
-                }
-            });
+        document.addEventListener('touchstart', () => {
+            if (!isCardVisible) {
+                isCardVisible = true; // 设置标记，防止重复触发
+                bdh.classList.add('visible'); // 当用户点击（或触摸）屏幕时，touchstart 事件触发，JS 脚本会为.bdh添加 .visible 类，从而触发过渡效果，
+                dkdbdh.classList.add('visible'); // 
+            }
+        });
 
-        </script>
+    </script>
 </body>
 
 </html>
