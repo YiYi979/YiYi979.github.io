@@ -56,6 +56,7 @@
             position: absolute;
             width: 80%;
             left: -100vw;
+            top: 0;
             opacity: 0;
             transition: opacity 1s ease-out 3s, transform 1s ease-out 3s;
         }
@@ -64,6 +65,7 @@
             position: absolute;
             width: 80%;
             right: -80%;
+            bottom: 0;
             opacity: 0;
             transition: opacity 1s ease-out 4s, transform 1s ease-out 4s;
         }
@@ -100,8 +102,9 @@
 
         .ys.visible {
             opacity: 1;
-            transform: translate(-100vw);
+            transform: translate(-80vw);
         }
+
     </style>
 </head>
 
@@ -114,14 +117,14 @@
         <img src="图片/打开的便当盒.jpg" alt="打开的便当盒">
         <p> 打开啦~</p>
     </div>
-    <div class="zs">
-        <img src="图片/左手一个嘴巴子.jpg" alt="">
-        <p>左手一个嘴巴子</p>
-    </div>
-    <div class="ys">
-        <img src="图片/右手一个嘴巴子.jpg" alt="">
-        <p>右手一个嘴巴子</p>
-    </div>
+        <div class="zs">
+            <img src="图片/左手一个嘴巴子.jpg" alt="">
+            <p>左手一个嘴巴子</p>
+        </div>
+        <div class="ys">
+            <img src="图片/右手一个嘴巴子.jpg" alt="">
+            <p>右手一个嘴巴子</p>
+        </div>
     <script>
         const bdh = document.querySelector('.bdh');
         const dkdbdh = document.querySelector('.dkdbdh');
@@ -129,7 +132,7 @@
         const ys = document.querySelector('.ys');
         let isCardVisible = false;
 
-        document.addEventListener('touchstart', () => {
+        document.addEventListener('click', () => {
             if (!isCardVisible) {
                 isCardVisible = true; // 设置标记，防止重复触发
                 bdh.classList.add('visible'); // 当用户点击（或触摸）屏幕时，touchstart 事件触发，JS 脚本会为.bdh添加 .visible 类，从而触发过渡效果，
