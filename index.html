@@ -1,42 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>便当盲盒</title>
     <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        body{
+
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             font-family: 'Poppins:', cursive;
         }
-        .bdh{
+
+        .bdh,
+        .dkdbdh {
             text-align: center;
-            width: 600px;
+            width: 500px;
         }
-        .bdh img{
+
+        .bdh img,
+        .dkdbdh img {
             border-radius: 10px;
             width: 100%;
         }
-        .bdh p{
+
+        .bdh p {
             font-size: larger;
             color: pink;
             font-weight: 700;
         }
+
+        .dkdbdh {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .zs {
+            position: absolute;
+            width: 500px;
+            opacity: 0;
+        }
+
+        .ys {
+            width: 500px;
+            opacity: 0;
+        }
+
+        .zs img,
+        .ys img {
+            width: 100%;
+        }
+
+        .ys p {
+            text-align: right;
+        }
+
+        .bdh {
+            transition: opacity 0.5s ease-in;
+        }
+
+        .bdh.visible {
+            opacity: 0;
+        }
     </style>
 </head>
+
 <body>
     <div class="bdh">
         <img src="图片/便当盒.jpg" alt="便当盲盒">
-       <p> 这是一个便当盲盒，点击屏幕打开盲盒吧！</p>
+        <p> 这是一个便当盲盒，点击屏幕打开盲盒吧！</p>
     </div>
+    <div class="dkdbdh">
+        <img src="图片/打开的便当盒.jpg" alt="打开的便当盒">
+        <p> 打开啦~</p>
+    </div>
+    <div class="zs">
+        <img src="图片/左手一个嘴巴子.jpg" alt="">
+        <p>左手一个嘴巴子</p>
+        <div class="ys">
+            <img src="图片/右手一个嘴巴子.jpg" alt="">
+            <p>右手一个嘴巴子</p>
+        </div>
+        <script>
+            const bdh = document.querySelector('.bdh');
+            let isCardVisible = false;
+
+            document.addEventListener('touchstart', () => {
+                if (!isCardVisible) {
+                    isCardVisible = true; // 设置标记，防止重复触发
+                    bdh.classList.add('visible'); // 触发动画
+                }
+            });
+
+        </script>
 </body>
+
 </html>
