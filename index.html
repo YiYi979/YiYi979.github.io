@@ -38,6 +38,12 @@
             color: pink;
             font-weight: 700;
         }
+        .dkdbdh p{
+            font-size: 3em;
+            color: pink;
+            font-weight: 700;
+
+        }
 
         .dkdbdh {
             position: absolute;
@@ -71,6 +77,12 @@
         .bdh.visible {
             opacity: 0;
         }
+        .dkdbdh{
+            transition: opacity 0.5s ease-out 0.5 ;
+        }
+        .dkdbdh.visible {
+            opacity: 1;
+        }
     </style>
 </head>
 
@@ -92,12 +104,14 @@
         </div>
         <script>
             const bdh = document.querySelector('.bdh');
+            const dkdbdh = document.querySelector('.dkdbdh');
             let isCardVisible = false;
 
             document.addEventListener('touchstart', () => {
                 if (!isCardVisible) {
                     isCardVisible = true; // 设置标记，防止重复触发
-                    bdh.classList.add('visible'); // 触发动画
+                    bdh.classList.add('visible'); // 当用户点击（或触摸）屏幕时，touchstart 事件触发，JS 脚本会为.bdh添加 .visible 类，从而触发过渡效果，
+                    dkdbdh.classList.add('visible'); // 
                 }
             });
 
