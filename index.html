@@ -42,14 +42,14 @@
             font-weight: 700;
         }
 
-        .dkdbdh p {
+        .dkdbdh p ,.end p {
             font-size: 3em;
             color: pink;
             font-weight: 700;
 
         }
 
-        .dkdbdh {
+        .dkdbdh,.end{
             position: absolute;
             opacity: 0;
         }
@@ -61,7 +61,7 @@
             left: -100vw;
             top: 0;
             opacity: 0;
-            transition: opacity 1s ease-out 3s, transform 1s ease-out 2.5s;
+            transition: opacity 1s ease-out 2.2s, transform 1s ease-out 2.2s;
         }
 
         .ys {
@@ -71,7 +71,7 @@
             right: -100vw;
             bottom: 0;
             opacity: 0;
-            transition: opacity 1s ease-out 4s, transform 1s ease-out 3s;
+            transition: opacity 1s ease-out 2.5s, transform 1s ease-out 2.5s;
         }
 
         .zs img,
@@ -95,18 +95,21 @@
             transition: opacity 1s ease-out 1s;
         }
 
-        .dkdbdh.visible {
+        .dkdbdh.visible ,.end.visible {
             opacity: 1;
         }
 
         .zs.visible {
-            opacity: 1;
             transform: translate(100vw);
+            opacity: 1;
         }
 
         .ys.visible {
-            opacity: 1;
             transform: translate(-100vw);
+            opacity: 1;
+        }
+        .end{
+            transition: opacity 0.5s ease-out 1.5s;
         }
 
     </style>
@@ -129,11 +132,15 @@
             <img src="图片/右手一个嘴巴子.jpg" alt="">
             <p>右手一个嘴巴子</p>
         </div>
+        <div class="end">
+            <p>吃我的嘴巴子吧</p>
+        </div>
     <script>
         const bdh = document.querySelector('.bdh');
         const dkdbdh = document.querySelector('.dkdbdh');
         const zs = document.querySelector('.zs');
         const ys = document.querySelector('.ys');
+        const end = document.querySelector('.end');
         let isCardVisible = false;
 
         document.addEventListener('click', () => {
@@ -143,6 +150,7 @@
                 dkdbdh.classList.add('visible'); // 
                 zs.classList.add('visible'); // 
                 ys.classList.add('visible'); // 
+                end.classList.add('visible'); // 
             }
         });
 
