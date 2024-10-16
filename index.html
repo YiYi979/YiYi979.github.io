@@ -26,7 +26,7 @@
         .dkdbdh {
             text-align: center;
             width: 80%;
-            max-width: 500px; 
+            max-width: 500px;
 
         }
 
@@ -42,14 +42,16 @@
             font-weight: 700;
         }
 
-        .dkdbdh p ,.end p {
+        .dkdbdh p,
+        .end p {
             font-size: 3em;
             color: pink;
             font-weight: 700;
 
         }
 
-        .dkdbdh,.end{
+        .dkdbdh,
+        .end {
             position: absolute;
             opacity: 0;
         }
@@ -57,7 +59,7 @@
         .zs {
             position: absolute;
             width: 80%;
-            max-width: 500px; 
+            max-width: 500px;
             left: -100vw;
             top: 0;
             opacity: 0;
@@ -67,7 +69,7 @@
         .ys {
             position: absolute;
             width: 80%;
-            max-width: 500px; 
+            max-width: 500px;
             right: -100vw;
             bottom: 0;
             opacity: 0;
@@ -93,9 +95,17 @@
 
         .dkdbdh {
             transition: opacity 1s ease-out 1s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .dkdbdh.visible ,.end.visible {
+        .dkdbdh p {
+            position: absolute;
+        }
+
+        .dkdbdh.visible,
+        .end.visible {
             opacity: 1;
         }
 
@@ -108,11 +118,16 @@
             transform: translate(-100vw);
             opacity: 1;
         }
-        .end{
-            transition: opacity 0.5s ease-out 1.5s;
-            text-align: center;
+
+        .dc.hidden {
+            opacity: 0;
+            transition: opacity 0.5s ease-out;
+            /* 添加淡出效果 */
         }
 
+        .end {
+            transition: opacity 0.5s ease-out 1.8s;
+        }
     </style>
 </head>
 
@@ -123,36 +138,42 @@
     </div>
     <div class="dkdbdh">
         <img src="图片/打开的便当盒.jpg" alt="打开的便当盒">
-        <p> 打开啦~</p>
+        <p class="dc"> 打开啦~</p>
     </div>
-        <div class="zs">
-            <img src="图片/左手一个嘴巴子.jpg" alt="">
-            <p>左手一个嘴巴子</p>
-        </div>
-        <div class="ys">
-            <img src="图片/右手一个嘴巴子.jpg" alt="">
-            <p>右手一个嘴巴子</p>
-        </div>
-        <div class="end">
-            <p>吃我的嘴巴子吧</p>
-        </div>
+    <div class="zs">
+        <img src="图片/左手一个嘴巴子.jpg" alt="">
+        <p>左手一个嘴巴子</p>
+    </div>
+    <div class="ys">
+        <img src="图片/右手一个嘴巴子.jpg" alt="">
+        <p>右手一个嘴巴子</p>
+    </div>
+    <div class="end">
+        <p>吃我的嘴巴子吧</p>
+    </div>
     <script>
-        const bdh = document.querySelector('.bdh');
+        const bdh = document.querySelector('.bdh'); //选择类名为 bdh 的第一个元素
         const dkdbdh = document.querySelector('.dkdbdh');
         const zs = document.querySelector('.zs');
         const ys = document.querySelector('.ys');
         const end = document.querySelector('.end');
+        const dc = document.querySelector('.dc');
         let isCardVisible = false;
 
         document.addEventListener('click', () => {
             if (!isCardVisible) {
                 isCardVisible = true; // 设置标记，防止重复触发
-                bdh.classList.add('visible'); // 当用户点击（或触摸）屏幕时，touchstart 事件触发，JS 脚本会为.bdh添加 .visible 类，从而触发过渡效果，
-                dkdbdh.classList.add('visible'); // 
-                zs.classList.add('visible'); // 
-                ys.classList.add('visible'); // 
-                end.classList.add('visible'); // 
+                bdh.classList.add('visible'); // 当用户点击（或触摸）屏幕时，touchstart 事件触发，JS 脚本会为 类名为bdh的元素 添加 .visible 类，从而触发过渡效果，
+                dkdbdh.classList.add('visible');  
+                zs.classList.add('visible');  
+                ys.classList.add('visible');  
+                end.classList.add('visible');  
+                // 1秒后隐藏p
+                setTimeout(() => {
+                    dc.classList.add('hidden');
+                }, 1500); // 1秒后添加淡出隐藏的class
             }
+
         });
 
     </script>
