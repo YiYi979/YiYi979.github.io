@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>便当盲盒</title>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+    <title>你是希望家园展示</title>
     <style>
         * {
             margin: 0;
@@ -14,168 +13,453 @@
         }
 
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-wrap: wrap;
-            font-family: 'Poppins:', cursive;
+            padding-top: 60px;
+            background-color: #f4f4f4;
         }
 
-        .bdh,
-        .dkdbdh {
+        nav {
+            position: fixed;
+            z-index: 100;
+            background: #444;
+            width: 100%;
+            top: 0;
+            padding: 15px 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 2%;
+            line-height: 30px;
+        }
+
+        header {
+            background: #333333;
+            color: #fff;
             text-align: center;
-            width: 80%;
-            max-width: 500px;
-
+            padding: 15px;
         }
 
-        .bdh img,
-        .dkdbdh img {
-            border-radius: 10px;
-            width: 100%;
-        }
-
-        .bdh p {
-            font-size: larger;
-            color: pink;
-            font-weight: 700;
-        }
-
-        .dkdbdh p,
-        .end p {
-            font-size: 3em;
-            color: pink;
-            font-weight: 700;
-
-        }
-
-        .dkdbdh,
-        .end {
-            position: absolute;
-            opacity: 0;
-        }
-
-        .zs {
-            position: absolute;
-            width: 80%;
-            max-width: 500px;
-            left: -100vw;
-            top: 0.2%;
-            opacity: 0;
-            transition: opacity 1s ease-out 2.2s, transform 1s ease-out 2.2s;
-        }
-
-        .ys {
-            position: absolute;
-            width: 80%;
-            max-width: 500px;
-            right: -100vw;
-            bottom: 0.2%;
-            opacity: 0;
-            transition: opacity 1s ease-out 2.5s, transform 1s ease-out 2.5s;
-        }
-
-        .zs img,
-        .ys img {
-            width: 100%;
-        }
-
-        .ys p {
-            text-align: right;
-        }
-
-        .bdh {
-            transition: opacity 1s ease-in;
-        }
-
-        .bdh.visible {
-            opacity: 0;
-        }
-
-        .dkdbdh {
-            transition: opacity 1s ease-out 1s;
+        .hero {
+            height: 50vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-wrap: wrap;
+            background: url(图片/总图.png) no-repeat bottom/cover;
+            /* 从底部开始显示背景图片 */
+            position: relative;
+            font-size: 2em;
+            letter-spacing: 10px;
         }
 
-        .dkdbdh p {
+        .hero::before {
+            content: "";
             position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgb(178, 176, 176, 0.5);
+            z-index: 1;
+            /* 设置给图片叠加有透明度的背景颜色 */
         }
 
-        .dkdbdh.visible,
-        .end.visible {
-            opacity: 1;
+        .hero h2 {
+            position: relative;
+            z-index: 2;
+            top: 60px;
+            text-shadow: 5px 5px 5px rgba(97, 96, 95, 0.5);
+            width: 100%;
+            text-align: center;
         }
 
-        .zs.visible {
-            transform: translate(100vw);
-            opacity: 1;
+        .hero h3 {
+            position: relative;
+            top: -60px;
         }
 
-        .ys.visible {
-            transform: translate(-100vw);
-            opacity: 1;
+        h2 {
+            color: #0056b3;
+            padding-top: 60px;
+            /* 设置跳转到元素时，内容不被导航遮挡 */
+            margin-top: -60px;
+            /* 调整因为设置了padding而改变的位置 */
+            margin-bottom: 10px;
         }
 
-        .dc.hidden {
-            opacity: 0;
-            transition: opacity 0.5s ease-out;
-            /* 添加淡出效果 */
+        /* main h2:nth-of-type(2){
+            margin-bottom: 10px;
+        } */
+        p {
+            line-height: 1.6;
+            margin-bottom: 10px;
         }
 
-        .end {
-            transition: opacity 0.5s ease-out 1.8s;
+        main {
+            max-width: 800px;
+            background: #fff;
+            margin: auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tag {
+            background: #e7f1ff;
+            color: #0056b3;
+            padding: 5px 10px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 15px;
+            margin-right: 10px;
+        }
+
+        .tag-contanier {
+            margin-bottom: 10px;
+        }
+
+        .card-container {
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .card-slider {
+            display: flex;
+            width: calc(300px*8);
+        }
+
+        .card {
+            width: 300px;
+            padding: 20px;
+            margin: 20px 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            /* img宽度为div.card盒子内容宽度的100% */
+            border-radius: 5px;
+        }
+
+        .card p {
+            font-size: 10px;
+            margin: 0;
+            text-indent: 16px;
+        }
+
+        .arrow {
+            transform: translateY(-50%);
+            /* 从原始位置向上移动自身高度的50%，
+            transform: translate(); 和 position: relative; 都是：元素相对于其原始位置进行移动，移动后，元素仍占据原有的位置，其周围的元素不会因其位置变化而调整。
+            但是，transform: translate(); 的百分比值是相对于自身的尺寸，position: relative; （使用top、right、bottom 和 left）的百分比值是相对于包含块的尺寸。
+            所以移动元素中心点用 transform: translateY(%);*/
+            /* 绝对值是具体的值（如50px和-50px），百分比值是相对的值（如50%和-50%）。
+            绝对值和百分比值都可以用在移动上，同一属性以绝对值移动和以百分比值移动 的移动参考位置是一样的。以绝对值移动，是以具体的值移动，以百分比值移动，是以相对的值移动。
+            绝对值是具体的值，而不同属性的百分比值相对尺寸不同取值不同，比如top、right、bottom 和 left的百分比值是相对于包含块的尺寸，transform: translate(); 的百分比值是相对于自身的尺寸。 */
+            position: absolute;
+            top: 50%;
+            /* 先把两个按钮垂直居中 */
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+
+        .arrow-left {
+            left: 10px;
+            /* 设置左边按钮水平位置,元素左端距离卡容器左端10px*/
+        }
+
+        .arrow-right {
+            right: 10px;
+            /* 设置右边按钮水平位置,元素右端距离卡容器右端10px */
+        }
+
+        .gallery {
+            column-count: 4;
+            margin-bottom: 10px;
+            /* 同级容器之间的间距，设置容器的margin */
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 6px;
+            transition: box-shadow 0.3s;
+        }
+
+        .gallery img:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .image-modal img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        form p {
+            margin: 0;
+        }
+
+        form>input,
+        form select,
+        form textarea {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s;
+        }
+
+        form input {
+            margin-bottom: 10px;
+        }
+
+        form textarea {
+            height: 80px;
+        }
+
+        form>input:focus,
+        form select:focus,
+        form textarea:focus {
+            border-color: #0056b3;
+            outline: none;
+        }
+
+        .button {
+            background: #0056b3;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            /* cursor属性用于指定鼠标光标在悬停在元素上时的样式。当设置为 pointer 时，鼠标光标会变成手形，通常表示该元素是可点击的。 */
+            transition: background 0.3s;
+        }
+
+        .button:hover {
+            background: #004494;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            background: #333;
+            color: #fff;
+            height: 60px;
+        }
+
+        footer p {
+            line-height: 30px;
+            display: inline-block;
+            margin: 0;
         }
     </style>
 </head>
 
 <body>
-    <div class="bdh">
-        <img src="图片/便当盒.jpg" alt="便当盲盒">
-        <p> 这是一个便当盲盒，点击屏幕打开盲盒吧！</p>
+    <header>
+        <h1>你是希望家园展示</h1>
+    </header>
+    <nav>
+        <a href="#">首页</a>
+        <a href="#gyjy">关于家园</a>
+        <a href="#sjzs">设计展示</a>
+        <a href="#jx">精选</a>
+        <a href="#jrwm">加入我们</a>
+    </nav>
+    <div class="hero">
+        <h2>你是希望</h2>
+        <h3>You Are Hope</h3>
     </div>
-    <div class="dkdbdh">
-        <img src="图片/打开的便当盒.jpg" alt="打开的便当盒">
-        <p class="dc"> 打开啦~</p>
-    </div>
-    <div class="zs">
-        <img src="图片/左手一个嘴巴子.jpg" alt="">
-        <p>左手一个嘴巴子</p>
-    </div>
-    <div class="ys">
-        <img src="图片/右手一个嘴巴子.jpg" alt="">
-        <p>右手一个嘴巴子</p>
-    </div>
-    <div class="end">
-        <p>吃我的嘴巴子吧</p>
-    </div>
+    <main>
+        <h2 id="gyjy">关于家园</h2>
+        <p>致力于将景观和功能结合设计，展现出美观实用的家园设计。</p>
+        <h2>特点</h2>
+        <div class="tag-contanier">
+            <span class="tag">豪华</span>
+            <span class="tag">趣味</span>
+            <span class="tag">自然</span>
+            <span class="tag">别致</span>
+        </div>
+        <h2 id="sjzs">设计展示</h2>
+        <div class="card-container">
+            <button class="arrow arrow-left" onclick="moveSlide(-1)">&#10094;</button>
+            <div class="card-slider" id="cardSlider">
+                <div class="card">
+                    <img src="图片/沙漠风情.png" alt="">
+                    <h3>沙漠风情</h3>
+                    <p>家园的中心景观,沙漠动物大观园，有灰熊夫妇、独狼、毒蛇，野马可换成阿玛龙。曲径婉转，景色宜人。</p>
+                </div>
+                <div class="card">
+                    <img src="图片/停车位和牛奶机.png" alt="">
+                    <h3>停车位和牛奶机</h3>
+                    <p>水上乐园，豪华私人车库，趣味牛奶机。车库上面配置了停马位方便换乘。湖面小桥蜿蜒曲折，风景宜人。（牛奶机是唯一的非原创设计，因为太喜欢了，就作为小景搬来家园里了）</p>
+                </div>
+                <div class="card">
+                    <img src="图片/衣帽间和墓地.png" alt="">
+                    <h3>衣帽间和墓地</h3>
+                    <p>衣帽间双进门入门后，位于门厅中央的和平百合纪念碑映入眼帘，随即沿着铺着地毯的轴线步入室内景观，每个放衣服的格子都做了独立式处理，非常有仪式感。中心区域是墓地，衣帽间和墓地结合方便穿戴和回档，墓地上下通往衣帽间，左右做了墓地的内凹式独立入口，同时做了角落衣帽间的对景设计，让原本落寞的角落变得十分别致。
+                    </p>
+                </div>
+                <div class="card">
+                    <img src="图片/养殖场.png" alt="">
+                    <h3>养殖场</h3>
+                    <p>懒得介绍了</p>
+                </div>
+                <div class="card">
+                    <img src="图片/厨房.png" alt="">
+                    <h3>厨房</h3>
+                    <p>懒得介绍了</p>
+                </div>
+                <div class="card">
+                    <img src="图片/打铁房.png" alt="">
+                    <h3>打铁房</h3>
+                    <p>懒得介绍了</p>
+                </div>
+                <div class="card">
+                    <img src="图片/橡胶屋.png" alt="">
+                    <h3>橡胶屋</h3>
+                    <p>懒得介绍了</p>
+                </div>
+                <div class="card">
+                    <img src="图片/矿区和仓库.png" alt="">
+                    <h3>矿区和仓库</h3>
+                    <p>懒得介绍了</p>
+                </div>
+            </div>
+            <button class="arrow arrow-right" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+        <h2 id="jx">精选</h2>
+        <div class="gallery">
+            <!-- todo 图片点击放大 -->
+            <!-- 这里用column把 div.gallery 分成 4列div区域 -->
+            <div> <img src="图片/沙漠风情.png" alt="" onclick="openImage(this)">
+            </div>
+            <div> <img src="图片/停车位和牛奶机.png" alt="" onclick="openImage(this)">
+            </div>
+            <div> <img src="图片/养殖场.png" alt="" onclick="openImage(this)">
+            </div>
+            <div> <img src="图片/衣帽间和墓地.png" alt="" onclick="openImage(this)">
+            </div>
+        </div>
+        <h2 id="jrwm">加入我们</h2>
+        <form action="">
+            <!-- todo 必填为空提示弹窗 -->
+            <p>*姓名</p>
+            <input type="text" id="name" placeholder="请输入你的姓名">
+            <p>性别</p>
+            <label> <input type="radio" name="sex" value="男">
+                男</label>
+            <label> <input type="radio" name="sex" value="女">
+                女</label>
+            <p>电子邮箱</p>
+            <input type="email" placeholder="请输入你的邮箱">
+            <p>*联系方式</p>
+            <input type="tel" id="tel" placeholder="请输入你的手机号">
+            <p>游戏年龄</p>
+            <select name="" id="">
+                <option value="">三个月以内</option>
+                <option value="">三个月以上一年以内</option>
+                <option value="">一年以上三年以内</option>
+                <option value="">三年以上</option>
+            </select>
+            <p>自我介绍</p>
+            <textarea name="" id=""></textarea>
+            <br>
+            <button type="submit" class="button">发送</button>
+        </form>
+    </main>
+    <footer>
+        <p>版权所有 &copy; </p>
+    </footer>
     <script>
-        const bdh = document.querySelector('.bdh'); //选择类名为 bdh 的第一个元素
-        const dkdbdh = document.querySelector('.dkdbdh');
-        const zs = document.querySelector('.zs');
-        const ys = document.querySelector('.ys');
-        const end = document.querySelector('.end');
-        const dc = document.querySelector('.dc');
-        let isCardVisible = false;
+        let currentSlide = 0;
 
-        document.addEventListener('click', () => {
-            if (!isCardVisible) {
-                isCardVisible = true; // 设置标记，防止重复触发
-                bdh.classList.add('visible'); // 当用户点击（或触摸）屏幕时，touchstart 事件触发，JS 脚本会为 类名为bdh的元素 添加 .visible 类，从而触发过渡效果，
-                dkdbdh.classList.add('visible');  
-                zs.classList.add('visible');  
-                ys.classList.add('visible');  
-                end.classList.add('visible');  
-                // 1秒后隐藏p
-                setTimeout(() => {
-                    dc.classList.add('hidden');
-                }, 1500); // 1秒后添加淡出隐藏的class
+        function moveSlide(direction) {
+            const slides = document.getElementById('cardSlider');
+            const totalSlides = slides.children.length;
+
+            // 计算新的索引
+            const newSlideIndex = currentSlide + direction;
+
+            // 检查边界
+            if (newSlideIndex < 0 || newSlideIndex >= totalSlides) {
+                return; // 到达边界时不进行任何操作
             }
 
+            currentSlide = newSlideIndex;
+
+            const slideWidth = slides.children[0].clientWidth;
+            slides.style.transform = 'translateX(' + (-currentSlide * slideWidth) + 'px)';
+        }
+
+        const cardSlider = document.getElementById('cardSlider');
+        let startX;
+
+        cardSlider.addEventListener('touchstart', (event) => {
+            startX = event.touches[0].clientX;
         });
 
+        cardSlider.addEventListener('touchmove', (event) => {
+            const moveX = event.touches[0].clientX - startX;
+            if (moveX > 50) {
+                moveSlide(-1);
+                startX = null; // 重置起始点
+            } else if (moveX < -50) {
+                moveSlide(1);
+                startX = null; // 重置起始点
+            }
+        });
+
+        // 绑定按钮的点击事件
+        document.querySelector('.arrow-left').onclick = () => moveSlide(-1);
+        document.querySelector('.arrow-right').onclick = () => moveSlide(1);
+
+        function openImage(img) {
+        // 创建模态框。给文档创建一个div元素，再给这个div添加.image-modal类来设置div的样式，这样就创建了一个模态框
+        const modal = document.createElement("div");
+        modal.classList.add('image-modal');
+        
+        // 创建放大的图片
+        const largeImg = document.createElement('img');
+        largeImg.src = img.src;
+
+        // 点击模态框关闭
+        modal.onclick = function() {
+            document.body.removeChild(modal);
+        };
+
+        // 将图片添加到模态框
+        modal.appendChild(largeImg);
+        document.body.appendChild(modal);
+    }
     </script>
 </body>
 
